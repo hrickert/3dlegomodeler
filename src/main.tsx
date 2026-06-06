@@ -5,17 +5,20 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { StoreProvider } from './contexts/StoreContext'
 import { theme } from './theme'
 import { App } from './App'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 const rootEl = document.getElementById('root')
 if (!rootEl) throw new Error('Root element not found')
 
 createRoot(rootEl).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <StoreProvider>
-        <App />
-      </StoreProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <StoreProvider>
+          <App />
+        </StoreProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   </StrictMode>
 )
